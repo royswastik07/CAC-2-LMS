@@ -17,6 +17,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+from userModule.views import studentlogin,teacherlogin
+
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path("",studentlogin,name="StudentLogin"),
+    path("Teacher",teacherlogin,name="TeacherLogin"),
 ]
