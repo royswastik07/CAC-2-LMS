@@ -8,7 +8,7 @@
 }
 
 html {
-  background: url(../images/27.jpg) no-repeat center center fixed;
+  background: url(../images/wm.jpeg) no-repeat center center fixed;
   background-size: cover;
   height: 100%;
   opacity: 0.90;
@@ -28,6 +28,8 @@ body, input{
   width: 100vw;
   /* transition: 1s 0.4s ease-in-out; */
   display: grid;
+  justify-content: right;
+  right: 140px;
 }
 
 form {
@@ -39,7 +41,7 @@ form {
   flex-direction: column;
   overflow: hidden;
   width: 380px;
-  height: 640px;
+  height: 400px;
   margin: auto;
   border-radius: 5px;
   box-shadow: 0px 0px 20px -10px rgb(94, 94, 94);
