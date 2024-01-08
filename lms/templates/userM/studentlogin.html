@@ -9,7 +9,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#92c8d0">
 
-  <title>Student Login</title>
+  <title>Login</title>
   <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/1053/1053364.png"type="image/x-icon">
   <link href="{% static 'css/login.css' %}" rel="stylesheet" >
   <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet" />
@@ -20,10 +20,10 @@
   <div class="signin-signup">
     <form action="#" method="post" class="sign-in-form">
       {% csrf_token %}
-      <h2 class="title">Student Login</h2>
+      <h2 class="title">Login</h2>
       <div class="input-field">
         <i class="fas fa-user"></i>
-        <input type="text" placeholder="RegNo" name ="RegNo"  required/>
+        <input type="email" placeholder="UserMail" name ="UserMail"  required/>
       </div>
       <div class="input-field">
         <i class="fas fa-lock"></i>
@@ -32,11 +32,9 @@
       <input type="submit" value="Login" class="btn solid" />
       <div class="next-page">
         <p>New Here <a href="" style="color: red;">Click Me</a></p>
-        <p>If you are a TEACHER <a href="{% url 'TeacherLogin' %}" style="color: red;">Click Here </a></p>
       </div>
     </form>
   </div>
 </body>
 </html>
 {% endblock content %}
-
