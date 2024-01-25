@@ -1,7 +1,9 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render
 
 # Create your views here.
-def studentlogin(request):
-    return render(request,"userM/studentlogin.html")
-def teacherlogin(request):
-    return render(request,"userM/teacherlogin.html")
+def index(request):
+    return render(request,"userM/home.html")
+def login(request):
+    return render(request,"userM/login.html")
+def signup(request):
+    return render(request,"userM/signup.html")
