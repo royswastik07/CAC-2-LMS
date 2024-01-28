@@ -5,6 +5,7 @@
 
 @import url('https://fonts.googleapis.com/css?family=Rajdhani:300,400,500,600,700');
 @import url('https://fonts.googleapis.com/css?family=Lato:300,400,700,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600&display=swap');
 
 /*****---------------------------------------- 1) font-family: 'Rajdhani', sans-serif;
  2) font-family: 'Poppins', sans-serif;
@@ -150,7 +151,7 @@ a,
 }
 
 img {
-     background-color: skyblue;
+     /* background-color: #020001; */
      max-width: 90%;
      height: auto;
 }
@@ -200,102 +201,21 @@ button {
      cursor: pointer;
 }
 
-.full {
-     float: left;
-     width: 100%;
-}
-
-.full {
-     width: 100%;
-     float: left;
-     margin: 0;
-     padding: 0;
-}
-
 
 /**-- heading section --**/
 
-
-/*---------------------------- preloader area ----------------------------*/
-
-.loader_bg {
-     position: fixed;
-     z-index: 9999999;
-     background: black;
-     width: 100%;
-     height: 100%;
-}
-
-.loader {
-     height: 100%;
-     width: 100%;
-     position: absolute;
-     left: 0;
-     top: 0;
-     display: flex;
-     justify-content: center;
-     align-items: center;
-}
-
-.loader img {
-     width: 280px;
-}
-
-/*-- header area --*/
-
-
-.header {
-     
-     width: 100%;
-     background: skyblue;
-     padding: 30px 30px;
-     position: absolute;
-     z-index: 99;
-     height: 90px;
-}
-
-
-/*-- navigation--*/
-
-.navigation.navbar {
-     
-     float: right;
-     
-     padding: 0px;
-     padding-top: 3px !important;
-}
-
-.navigation.navbar-dark .navbar-nav .nav-link {
-     
-     padding: 0 25px;
-     color:red;
-     font-size: 16px;
-     line-height: 20px;
-     text-transform: uppercase;
-}
-
-.navigation.navbar-dark .navbar-nav .nav-link:focus,
-.navigation.navbar-dark .navbar-nav .nav-link:hover {
-     color: #e70139;
-}
-
-.navigation.navbar-dark .navbar-nav .active>.nav-link,
-.navigation.navbar-dark .navbar-nav .nav-link.active,
-.navigation.navbar-dark .navbar-nav .nav-link.show,
-.navigation.navbar-dark .navbar-nav .show>.nav-link {
-     color: #e70139;
-}
+/* heading section ends */
 
 /** banner section **/
 
 .banner_main {
-     background-color: white;
+     background-color: black;
      display: flex;
      align-content: center;
      align-items: center;
      background-size: 100% 100%;
-     padding-top: 13%;
-     padding-bottom: 150px;
+     padding-top: 90px;
+     padding-bottom: 90px;
 }
 
 .text-bg {
@@ -320,11 +240,11 @@ button {
 
 .text-bg h1 {
      color:skyblue;
-     font-size: 78px;
+     font-size: 50px;
      line-height: 96px;
-     padding-bottom: 59px;
+     padding-bottom: 30px;
      font-weight: 800;
-     padding-top: 40px;
+     padding-top: 30px;
 }
 
 .text-bg i img {
@@ -347,8 +267,9 @@ button {
 }
 
 .text-bg a:hover {
-     background-color: #2a0f12;
-     color: #fff;
+     background-color: #fff;
+     color: black;
+     /* font-size:1%; */
      transition: ease-in all 0.5s;
 }
 
@@ -493,25 +414,24 @@ button {
 .work {
      background: #fff;
      padding-top: 90px;
- }
+}
  
- .our_work {
+.our_work {
      margin-bottom: 30px;
      height: 400px; /* Set the desired fixed height */
      overflow: hidden; /* Hide overflow content */
- }
+}
  
- .our_work figure {
+.our_work figure {
      margin: 0;
      height: 100%;
- }
+}
  
- .our_work figure img {
+.our_work figure img {
      width: 100%;
      height: 100%;
      object-fit: cover; /* Maintain aspect ratio and cover the container */
- }
- 
+}
 
 
 /** end work section **/
@@ -526,20 +446,18 @@ button {
      text-align: center;
 }
 .footer figure img {
-     max-width: 50%; /* Adjust this value according to your needs */
+     max-width: 40%; /* Adjust this value according to your needs */
      height: auto;
- }
- 
+}
 
 
 
 /** end footer **/
-
 @import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
 
 /* Styling for the wrapper */
 .wrapper {
-     background-color: #f0f5ff; /* Light blueish background color */
+     background-color: #020001; /* Light blueish background color */
      padding: 30px;
      border-radius: 10px; /* Rounded corners */
      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Shadow effect */
@@ -551,7 +469,7 @@ button {
      color: #1a1a1a; /* Dark text color */
      margin-bottom: 20px;
      font-size: 45px;
-     color: #060002;
+     color: #fff;
      line-height: 55px;
      font-weight: 800;
 }
@@ -602,5 +520,3 @@ button {
      font-size: 1.2rem;
      line-height: 1.4;
 }
-
- 

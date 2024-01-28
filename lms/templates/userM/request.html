@@ -1,0 +1,137 @@
+{% extends 'base.html' %} 
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!----======== CSS ======== -->
+    <link href="{% static 'css/requeststyle.css'%}" rel="stylesheet">
+    <!-- <link rel="stylesheet" href="./requeststyle.css"> -->
+     
+    <!----===== Iconscout CSS ===== -->
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+
+    <title>LMS | Loundry Request</title> 
+</head>
+<body>
+    <!-- <div class="main"> -->
+        <div class="wrapper">
+            <nav>
+            <div class="content">
+                <div class="logo"><a href="#">LMS</a></div>
+                <ul class="links">
+                    <li><a href="{% url 'user-w' %}">Home</a></li>
+                    <li><a href="{% url 'order-req' %}">Laundry Request</a></li>
+                    <li><a href="/track">Track Status</a></li>
+                    <li><a href="/about">Raise A Complaint</a></li>
+                </ul>
+            </div>
+            <div class="rightlink"><a href="http://localhost:8000">Logout</a></div>
+            </nav>
+        </div>
+
+        <div class="container">
+            <header>Loundry Requests</header>
+
+            <form action="submitted" method="post">
+                {% csrf_token %}
+                {% load static %}
+                <div class="form first">
+                    <div class="details personal">
+                        <span class="title">Personal Details</span>
+
+                        <div class="fields">
+                            <div class="input-field">
+                                <label>Full Name</label>
+                                <input type="text" placeholder="Enter your name" name='FullName'required>
+                            </div>
+
+                            <div class="input-field">
+                                <label>Registration NUmber</label>
+                                <input type="tel" minlength="8" maxlength="8" placeholder="Registration Number" name='Regno' required>
+                            </div>
+
+                            <div class="input-field">
+                                <label>Department</label>
+                                <!-- <input type="text" placeholder="Enter State" name='State' required> -->
+                                <select value="Department" name="Department" required>
+                                    <option option disabled selected>Choose Dept:</option>
+                                    <option >BBA</option>
+                                    <option >BCOM</option>
+                                    <option >BALLB</option>
+                                    <option >BBALLB</option>
+                                    <option >BSCDS</option>
+                                    <option >BSCEA</option>
+                                    <option >MBA</option>
+                                    <option >MSCGF</option>
+                                    <option >MSCEA</option>
+                                    <option >MSCDS</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- <div class="details ID"> -->
+                        
+                        <div class="details ID">
+                            <span class="title">Loundry Details</span>
+    
+                            <div class="fields">
+                                <div class="input-field">
+                                    <label>Loundry Type</label>
+                                    <select value="Laundry" name="Laundry" id="slct1">
+                                        <option disabled selected>Choose a option</option>
+                                        <option>Dryclean</option>
+                                        <option>Normalcleaning</option>
+                                    </select>
+                                </div>
+                                <div class="input-field">
+                                    <label>Weight of Clothes</label>
+                                    <input type="number" min="5" max="30" placeholder="Quantity" name="Weight" required>
+                                </div>
+                                
+                                <div class="input-field">
+                                    <label>Issued Date</label>
+                                    <input type="date" placeholder="issued date" name='Issued' required>
+                                </div>
+    
+                                <div class="input-field">
+                                    <label>Expected Delivery Date</label>
+                                    <input type="date" placeholder="Expected delivery date" name='Delivery' required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button class="submit">
+                            <span class="btnText">Submit</span>
+                            <i class="uil uil-navigator"></i>
+                        </button>
+                    <!-- </div>  -->
+                </div>
+                </div>
+            </form>
+        </div>
+        <!-- bubbles back ground -->
+        <section class="sticky">
+            <div class="bubbles">
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            </div>
+        </section>
+        <!-- <script src="../static/Javascript/script.js"></script> -->
+    <!-- </div> -->
+</body>
+</html>
+{% endblock content %}

@@ -17,12 +17,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from userModule.views import index,login,signup,userwelcome
+from userModule.views import index,login_signup,userwelcome,requestorder
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("",index,name="home"),
-    path("login",login,name="login"),
-    path("signup",signup,name="signup"),
+    path("login-signup",login_signup,name="login-signup"),
     path("userwellcome",userwelcome,name="user-w"),
+    path("requestorders",requestorder,name="order-req"),
 ]
