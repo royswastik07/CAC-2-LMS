@@ -1,10 +1,16 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
+from django.contrib.auth import authenticate,login,logout
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
+from django.contrib import messages
+from .models import Usertbl,Orderstbl
+import uuid
 
 # Create your views here.
 def index(request):
     return render(request,"userM/home.html")
-def login_signup(request):
-    return render(request,"userM/login-signup.html")
+def signup_login(request):
+    return render(request,"userM/signup-login.html")
 def loginerror(request):
     return render(request,"userM/loginerror.html")
 def userwelcome(request):

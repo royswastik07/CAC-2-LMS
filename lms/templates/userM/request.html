@@ -36,22 +36,22 @@
         <div class="container">
             <header>Loundry Requests</header>
 
-            <form action="submitted" method="post">
-                <!-- {% csrf_token %}
-                {% load static %} -->
+            <form action="submitted" method="POST">
+                {% csrf_token %}
+                <!-- {% load static %} -->
                 <div class="form first">
                     <div class="details personal">
                         <span class="title">Personal Details</span>
 
                         <div class="fields">
                             <div class="input-field">
-                                <label>Full Name</label>
-                                <input type="text" placeholder="Enter your name" name='FullName'required>
+                                <label>Name</label>
+                                <input type="text" placeholder="Enter your name" name='Name'required>
                             </div>
 
                             <div class="input-field">
-                                <label>Registration NUmber</label>
-                                <input type="tel" minlength="8" maxlength="8" placeholder="Registration Number" name='Regno' required>
+                                <label>RegNo</label>
+                                <input type="tel" minlength="8" maxlength="8" placeholder="Registration Number" name='RegNo' required>
                             </div>
 
                             <div class="input-field">
@@ -81,22 +81,22 @@
     
                             <div class="fields">
                                 <div class="input-field">
-                                    <label>Loundry Type</label>
-                                    <select value="Laundry" name="Laundry" id="slct1">
+                                    <label>Service Type</label>
+                                    <select value="Service" name="Service" id="slct1">
                                         <option disabled selected>Choose a option</option>
                                         <option>Dryclean</option>
                                         <option>Normalcleaning</option>
                                     </select>
                                 </div>
                                 <div class="input-field">
-                                    <label>Weight of Clothes</label>
-                                    <input type="number" min="5" max="30" placeholder="Quantity" name="Weight" required>
+                                    <label>Quantity</label>
+                                    <input type="number" min="5" max="30" placeholder="Quantity" name="Quantity" required>
                                 </div>
                                 
-                                <div class="input-field">
+                                <!-- <div class="input-field">
                                     <label>Issued Date</label>
                                     <input type="date" placeholder="issued date" name='Issued' required>
-                                </div>
+                                </div> -->
     
                                 <div class="input-field">
                                     <label>Expected Delivery Date</label>
