@@ -13,7 +13,7 @@
     <!-- <link rel="stylesheet" href="./requeststyle.css"> -->
      
     <!----===== Iconscout CSS ===== -->
-    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+    <!-- <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css"> -->
 
     <title>LMS | Loundry Request</title> 
 </head>
@@ -21,16 +21,15 @@
     <!-- <div class="main"> -->
         <div class="wrapper">
             <nav>
-            <div class="content">
+              <div class="content">
                 <div class="logo"><a href="#">LMS</a></div>
                 <ul class="links">
-                    <li><a href="{% url 'user-w' %}">Home</a></li>
-                    <li><a href="{% url 'order-req' %}">Laundry Request</a></li>
-                    <li><a href="/track">Track Status</a></li>
-                    <li><a href="/about">Raise A Complaint</a></li>
+                  <li><a href="{% url 'user-w' %}">Home</a></li>
+                  <li><a href="{% url 'order-req' %}">Laundry Request</a></li>
+                  <li><a href="{% url 'track-sts' %}">Track Status</a></li>
                 </ul>
-            </div>
-            <div class="rightlink"><a href="http://localhost:8000">Logout</a></div>
+              </div>
+              <div class="rightlink"><a href="http://localhost:8000">Logout</a></div>
             </nav>
         </div>
 
@@ -38,8 +37,8 @@
             <header>Loundry Requests</header>
 
             <form action="submitted" method="post">
-                {% csrf_token %}
-                {% load static %}
+                <!-- {% csrf_token %}
+                {% load static %} -->
                 <div class="form first">
                     <div class="details personal">
                         <span class="title">Personal Details</span>

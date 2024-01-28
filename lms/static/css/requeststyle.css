@@ -149,6 +149,7 @@ nav .content .links {
     position: relative;
     max-width: 700px;
     width: 100%;
+    height: 500px;
     border-radius: 6px;
     padding: 30px;
     margin: 0 15px;
@@ -179,16 +180,16 @@ nav .content .links {
 .container form {
     position: relative;
     margin-top: 16px;
-    min-height: 490px;
-    background-color: #fff;
+    min-height: 450px;
+    /* background-color: #fff; */
     overflow: hidden;
 }
 
-.container form .form {
+/* .container form .form {
     position: absolute;
     background-color: #fff;
     transition: 0.3s ease;
-}
+} */
 
 .container form .form.second {
     opacity: 0;
