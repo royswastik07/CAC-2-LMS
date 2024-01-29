@@ -1,0 +1,94 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: url('https://media01.stockfood.com/largepreviews/MjE3MzYxNjM5OA==/70116658--Arrangement-Background-Backgrounds-Box-Boxes-Color-Colour-Detail-Details-Indoor-Indoors-Industrial-Industry.jpg') no-repeat center center fixed;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.order-container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+h2 {
+    color: #333;
+}
+
+.order-status {
+    margin-bottom: 15px;
+}
+
+.dispatched-status {
+    color: #4CAF50;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th,
+td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+.total {
+    margin-top: 20px;
+    text-align: right;
+    font-weight: bold;
+}
+
+.order-form {
+    margin-top: 20px;
+}
+
+.order-form input,
+.order-form select {
+    margin-bottom: 10px;
+    padding: 8px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.add-order-btn,
+.delete-orders-btn {
+    background-color: #4CAF50;
+    color: #fff;
+    padding: 5px;
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+    width: 48%;
+}
+
+.delete-orders-btn {
+    background-color: #f44336;
+    margin-left: 2%;
+}
+
+.live-status {
+    font-weight: bold;
+    color: #333;
+}
+
+.status-columns {
+    display: flex;
+    justify-content: space-between;
+}

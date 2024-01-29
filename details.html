@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Details</title>
+    <link rel="stylesheet" href="./staff.css">
+</head>
+<body>
+
+    <div class="order-container">
+        <h2>Order Details</h2>
+
+        <div class="order-status">
+            <p>Status: <span class="dispatched-status">Dispatched</span></p>
+        </div>
+
+        <div class="status-columns">
+            <p>Total Received: <span id="totalReceived">0</span></p>
+            <p>Total Delivered: <span id="totalDelivered">0</span></p>
+            <p>Total Pending: <span id="totalPending">0</span></p>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Select</th>
+                    <th>Order Details</th>
+                    <th>Quantity</th>
+                    <th>Total Price</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Add more rows as needed -->
+            </tbody>
+        </table>
+
+        <div class="total">
+            <p>Total: $0.00</p>
+        </div>
+
+        <div class="order-form">
+            <label for="product">Product:</label>
+            <input type="text" id="product" placeholder="Enter product name">
+
+            <label for="quantity">Quantity:</label>
+            <input type="number" id="quantity" placeholder="Enter quantity">
+
+            <label for="price">Price:</label>
+            <input type="text" id="price" placeholder="Enter total price">
+
+            <label for="status">Status:</label>
+            <select id="status">
+                <option value="dispatched">Dispatched</option>
+                <option value="pending">Pending</option>
+                <option value="delivered">Delivered</option>
+                <!-- Add more options as needed -->
+            </select>
+
+            <button class="add-order-btn" onclick="addOrder()">Add Order</button>
+            <button class="delete-orders-btn" onclick="deleteSelectedOrders()">Delete Selected</button>
+        </div>
+
+        <div class="live-status">
+            <p>Live Status: <span id="liveStatus">No order selected</span></p>
+        </div>
+
+    </div>
+
+
+</body>
+</html>
