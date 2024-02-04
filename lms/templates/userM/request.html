@@ -1,9 +1,7 @@
 {% extends 'base.html' %} 
 {% load static %}
-{% block content %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
+
+{% block extrahead %}
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,7 +14,9 @@
     <!-- <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css"> -->
 
     <title>LMS | Loundry Request</title> 
-</head>
+{% endblock extrahead %}
+
+{% block content %}
 <body>
     <!-- <div class="main"> -->
         <div class="wrapper">
@@ -28,14 +28,6 @@
                   <li><a href="{% url 'order-req' %}">Laundry Request</a></li>
                   <li><a href="{% url 'track-sts' %}">Track Status</a></li>
                 </ul>
-              </div>
-              <div class="rightlink">
-                <form method="POST" action="/signout" class="log-out">
-                {% csrf_token %}
-                  <button type="submit" id="signout" name="signout">
-                  <i class="fas fa-sign-out"></i>
-                  <p>Log Out</p></button>
-                </form>
               </div>
             </nav>
         </div>
@@ -139,5 +131,4 @@
         <!-- <script src="../static/Javascript/script.js"></script> -->
     <!-- </div> -->
 </body>
-</html>
 {% endblock content %}

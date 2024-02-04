@@ -119,16 +119,22 @@ def user_login(request):
 
 def loginerror(request):
     return render(request,"userM/loginerror.html")
+@login_required
 def userwelcome(request):
     return render(request,"userM/userwellcome.html")
+@login_required
 def requestorder(request):
     return render(request,"userM/request.html")
+@login_required
 def requestdone(request):
     return render(request,"userM/requestdone.html")
+@login_required
 def trackstatus(request):
     return render(request,"userM/trackstatus.html")
+@login_required
 def showstatus(request):
     return render(request,"userM/showstatus.html")
+@login_required
 def signout(request):
     logout(request)
     return redirect('home')

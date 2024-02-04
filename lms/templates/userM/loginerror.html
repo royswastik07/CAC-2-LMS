@@ -1,11 +1,13 @@
 {% extends 'base.html' %}
 {% load static%}
-{% block content %}
 
-<head>
+
+{% block extrahead %}
     <title>LMS | Loundry Request Done</title>
     <link rel="stylesheet" href="{% static 'css/loginerror.css' %}">
-</head>
+{% endblock extrahead %}
+
+{% block content %}
 <body>
     <div class="status">
         <div class="input">
