@@ -1,12 +1,10 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
 {% load static %}
 
 {% block extrahead %}
-    <!----======== CSS ======== -->
-    <link href="{% static 'css/trackstatus.css'%}" rel="stylesheet">
-    <!-- <link rel="stylesheet" href="./trackstatus.css"> -->
-    <title>LMS | Track Status</title>
-{% endblock extrahead %}
+  <title>LMS | Complaint</title>
+  <link rel="stylesheet" href="{% static 'css/complaint.css' %}">
+{% endblock extrahead%}
 
 {% block content %}
 
@@ -31,18 +29,27 @@
       </nav>
     </div>
 
-    <form action="" method="POST">
-        {% csrf_token %}
-        {% load static %}
-        <div class="status">
-            <div class="input">
-                <input type="text" placeholder="Enter Tracking Id" name='TrackingId'>
-            </div>
-            <div class="submit">
-                <button>Track</button>
-            </div>
-        </div>
-    </form>
+    <section>
+        <h2>Submit a Complaint</h2>
+    
+        <form id="complaintForm">
+          <label for="orderIdInput">Order ID:</label>
+          <input type="text" id="orderIdInput" placeholder="Enter order ID (e.g., #123)" maxlength="50" required>
+    
+          <label for="userInput">User Name:</label>
+          <input type="text" id="userInput" placeholder="Enter your name" maxlength="50" required>
+    
+          <label for="complaintInput">Complaint (up to 50 characters):</label>
+          <textarea id="complaintInput" placeholder="Enter your complaint" maxlength="50" required></textarea>
+    
+          <button type="button" onclick="submitNewComplaint()">Submit Complaint</button>
+    
+          <!-- Pop-up container for success and error messages -->
+          <div id="popupContainer" class="popup-container">
+            <div id="popupMessage" class="popup"></div>
+          </div>
+        </form>
+      </section>
       <!-- bubbles back ground -->
   <section class="sticky">
     <div class="bubbles">
@@ -63,3 +70,9 @@
   </section>
   <!-- end background -->
 {% endblock content %}
+
+{% block extrafooter %}
+
+<script src="{% static 'js/complaint.js' %}"></script>
+
+{% endblock extrafooter%}

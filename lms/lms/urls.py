@@ -30,5 +30,6 @@ urlpatterns = [
     path("requestdone",requestdone,name="order-reqdone"),
     path("trackstatus",trackstatus,name="track-sts"),
     path("showstatus",showstatus,name="show-sts"),
+    path("complints",complaints,name="complaints"),
     path("signout",signout,name="logout")
 ]

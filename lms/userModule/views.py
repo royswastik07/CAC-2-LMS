@@ -135,6 +135,9 @@ def trackstatus(request):
 def showstatus(request):
     return render(request,"userM/showstatus.html")
 @login_required
+def complaints(request):
+    return render(request,"userM/complaint.html")
+@login_required
 def signout(request):
     logout(request)
     return redirect('home')
