@@ -22,21 +22,28 @@
         <div class="wrapper">
             <nav>
               <div class="content">
-                <div class="logo"><a href="#">LMS</a></div>
+                <div class="logo"><a href="#">{{ user.username }}</a></div>
                 <ul class="links">
                   <li><a href="{% url 'user-w' %}">Home</a></li>
                   <li><a href="{% url 'order-req' %}">Laundry Request</a></li>
                   <li><a href="{% url 'track-sts' %}">Track Status</a></li>
                 </ul>
               </div>
-              <div class="rightlink"><a href="http://localhost:8000">Logout</a></div>
+              <div class="rightlink">
+                <form method="POST" action="/signout" class="log-out">
+                {% csrf_token %}
+                  <button type="submit" id="signout" name="signout">
+                  <i class="fas fa-sign-out"></i>
+                  <p>Log Out</p></button>
+                </form>
+              </div>
             </nav>
         </div>
 
     <!-- // Home Section -->
 
     <div id="home">
-      <h1>Loundry Management System</h1>
+      <h1>Laundry Management System</h1>
       <div class="subheading">
         <h3 class="subText">Cleaning</h3>
         <h3 class="subText">Washing</h3>
