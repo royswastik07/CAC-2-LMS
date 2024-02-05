@@ -30,26 +30,24 @@
     </div>
 
     <section>
-        <h2>Submit a Complaint</h2>
+      <h2>Submit a Complaint</h2>
+      
+      <form id="complaintForm" action="{% url 'complaints' %}" method="post">
+        {% csrf_token %}
+        <label for="userInput">User Name:</label>
+        <input type="text" id="userInput" name="user_name" placeholder="Enter your name" maxlength="50" required>
     
-        <form id="complaintForm">
-          <label for="orderIdInput">Order ID:</label>
-          <input type="text" id="orderIdInput" placeholder="Enter order ID (e.g., #123)" maxlength="50" required>
+        <label for="complaintInput">Complaint (up to 50 characters):</label>
+        <textarea id="complaintInput" name="complaint_text" placeholder="Enter your complaint" maxlength="50" required></textarea>
     
-          <label for="userInput">User Name:</label>
-          <input type="text" id="userInput" placeholder="Enter your name" maxlength="50" required>
+        <button type="submit">Submit Complaint</button>
     
-          <label for="complaintInput">Complaint (up to 50 characters):</label>
-          <textarea id="complaintInput" placeholder="Enter your complaint" maxlength="50" required></textarea>
-    
-          <button type="button" onclick="submitNewComplaint()">Submit Complaint</button>
-    
-          <!-- Pop-up container for success and error messages -->
-          <div id="popupContainer" class="popup-container">
+        <!-- Pop-up container for success and error messages -->
+        <div id="popupContainer" class="popup-container">
             <div id="popupMessage" class="popup"></div>
-          </div>
-        </form>
-      </section>
+        </div>
+      </form>
+    </section>
       <!-- bubbles back ground -->
   <section class="sticky">
     <div class="bubbles">

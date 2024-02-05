@@ -14,8 +14,8 @@
                 {% csrf_token %}
 
                 <h2 class="form__title">Sign Up</h2>
-                <input type="text" placeholder="Username" id="name" name="username" class="input" required/>
-                <input type="email" placeholder="eg:user@christuniversity.in" id="email" name="email" class="input" required/>
+                <input type="text" placeholder="Reg No" id="name" name="username" class="input" required/>
+                <input type="email" placeholder="eg:user@christuniversity.in" id="email" name="email" class="input" required pattern="[a-zA-Z0-9._%+-]+@christuniversity\.in$" required/>
                 <!-- <input type="number" placeholder="Regno" id="regnoid" name="regnoid" class="input" max="1000" required/> -->
                 <select id="userType" name="usertype" class="input" required>
                     <option disabled selected>User Type</option>
@@ -54,7 +54,7 @@
                 {% csrf_token %}
         
                 <h2 class="form__title">Sign In</h2>
-                <input type="text" placeholder="Username" name="Username" class="input" required />
+                <input type="text" placeholder="Reg No" name="Username" class="input" required />
                 <select id="userType" name="userType" class="input" required>
                     <option disabled="" selected="">User Type</option>
                     <option value="user">user</option>

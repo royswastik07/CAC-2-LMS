@@ -16,10 +16,10 @@
 <body>
     <div class="status">
         <div class="input">
-            <h3>Your Request is : "{{Status}}"</h3>
+            <h3>Delivered On: "{{ order.expected_delivery_date }}"</h3>
         </div>
         <div class="submit">
-            <a href="{%url 'user-w'%}">Go Home</a>
+            <a href="{% url 'user-w' %}">Go Home</a>
         </div>
     </div>
     <!-- bubbles back ground -->

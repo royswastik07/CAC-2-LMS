@@ -149,6 +149,15 @@
 
         // Prevent default form submission and handle it asynchronously
 
+        var form = document.getElementById("laundryForm");
+    form.addEventListener("submit", function (event) {
+        // Get the amount value
+        var amount = amountInput.value;
+
+        // Save the amount in local storage
+        localStorage.setItem("laundryAmount", amount);
+    });
+
     </script>
 </body>
 {% endblock content %}

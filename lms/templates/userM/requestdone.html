@@ -14,9 +14,9 @@
 <body>
     <div class="status">
         <div class="input">
-            <h1>Thank You "{{Name}}"</h1>
-            <h1>Your Request have been done</h1>
-            <h3>Your Tracking Id is {{TrackingId}}</h3>
+            <h1>Thank You "{{ user_name }}"</h1>
+            <h1>Your Request has been done</h1>
+            <h3>Your Tracking Id is {{ tracking_id }}</h3>
         </div>
         <div class="submit">
             <a href="{% url 'user-w' %}">Go Home</a>

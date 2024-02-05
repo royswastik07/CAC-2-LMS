@@ -27,10 +27,10 @@ urlpatterns = [
     path("loginerror",loginerror,name="login-error"),
     path("userwellcome",userwelcome,name="user-w"),
     path("requestorders",requestorder,name="order-req"),
-    path("payment",payment,name="payment"),
+     path('payment/<int:order_id>/', payment, name='payment'),
     path("requestdone",requestdone,name="order-reqdone"),
     path("trackstatus",trackstatus,name="track-sts"),
-    path("showstatus",showstatus,name="show-sts"),
-    path("complints",complaints,name="complaints"),
+    path('showstatus/<int:order_id>/', showstatus, name='showstatus'),
+    path('complaints/', complaints, name='complaints'),
     path("signout",signout,name="logout")
 ]

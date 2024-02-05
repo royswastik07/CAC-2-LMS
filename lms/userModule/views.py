@@ -1,9 +1,9 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect, get_object_or_404
 from django.contrib.auth import authenticate, login,logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib import messages
-from .models import Usertbl, Orderstbl
+from .models import Usertbl, Orderstbl, Payment, Complaint
 from django.http import HttpResponse
 
 import uuid
@@ -163,30 +163,94 @@ def requestorder(request):
             service_type=service_type,
             quantity=quantity,
             amount=amount,
-            expected_delivery_date=expected_delivery_date
+            expected_delivery_date=expected_delivery_date,
+            payment_completed=False
         )
         order.save()
 
         # Redirect to a success page or home page
-        return redirect('home')  # Replace 'home' with the actual URL name of your home page
+        return redirect('payment', order_id=order.id) # Replace 'home' with the actual URL name of your home page
 
     
     return render(request,"userM/request.html")
-@login_required (login_url='login')
-def payment(request):
-    return render(request,"userM/payment.html")
+@login_required(login_url='login')
+def payment(request, order_id):
+    # Retrieve the order from the database
+    order = get_object_or_404(Orderstbl, id=order_id)
+
+    if request.method == 'POST':
+        # Process the payment (replace with your payment processing logic)
+
+        # Assuming payment is successful, update the order's payment status to True
+        order.payment_completed = True
+        order.save()
+
+        # Get the payment amount from the form data
+        payment_amount_str = request.POST.get('amount', '0')  # Default to '0' if 'amount' is not present
+        try:
+            payment_amount = int(payment_amount_str)
+        except ValueError:
+            # Handle the case where 'amount' is not a valid integer
+            payment_amount = 0
+
+        # Create a Payment instance
+        payment = Payment(order=order, amount_paid=payment_amount, payment_status='SUCCESS')
+        payment.save()
+
+        # Pass user name and order ID to the template context
+        context = {
+            'order': order,
+            'user_name': order.user.username,
+            'tracking_id': order.id,
+        }
+
+        # Redirect to a success page or home page
+        return render(request, 'userM/requestdone.html', context)  # Use your template name
+
+    return render(request, "userM/payment.html", {'order': order})
 @login_required (login_url='login')
 def requestdone(request):
     return render(request,"userM/requestdone.html")
 @login_required (login_url='login')
 def trackstatus(request):
-    return render(request,"userM/trackstatus.html")
+    if request.method == 'POST':
+        tracking_id = request.POST.get('TrackingId')
+
+        # Query the database to get the order with the provided Tracking ID
+        order = get_object_or_404(Orderstbl, id=tracking_id)
+
+        # Pass the order information to the template context
+        context = {
+            'order': order,
+            # 'status': order.status  # Replace 'status' with the actual field name in your Orderstbl model
+        }
+
+        return render(request, 'userM/showstatus.html', context)
+
+    return render(request, 'userM/trackstatus.html')
 @login_required (login_url='login')
-def showstatus(request):
+def showstatus(request,order_id):
     return render(request,"userM/showstatus.html")
-@login_required (login_url='login')
+@login_required(login_url='login')
 def complaints(request):
-    return render(request,"userM/complaint.html")
+    if request.method == 'POST':
+        # Assuming the user is logged in, retrieve the user instance from the request
+        user_instance = request.user.usertbl  # Use request.user directly
+
+        user_name = request.POST.get('user_name')
+        complaint_text = request.POST.get('complaint_text')
+
+        # Perform basic form validation (you can add more checks)
+        if not user_instance or not user_name or not complaint_text:
+            return render(request, 'userM/complaint.html', {'error_message': 'All fields are required.'})
+
+        # Create a Complaint instance associated with the user
+        complaint = Complaint.objects.create( user_name=user_name, complaint_text=complaint_text)
+
+        # Optionally, you can add a success message or just return to the complaint page.
+        return render(request, 'userM/complaint.html', {'success_message': 'Complaint submitted successfully.'})
+
+    return render(request, 'userM/complaint.html')
 @login_required (login_url='login')
 def signout(request):
     logout(request)
