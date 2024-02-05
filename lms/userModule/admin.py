@@ -1,8 +1,12 @@
-from django.contrib import admin
-from userModule.models import Usertbl
+# userModule/admin.py
 
-# Register your models here.
+from django.contrib import admin
+from .models import Usertbl
+
 class userAdmin(admin.ModelAdmin):
-    list_display=('userRegnoID','usertype','username','useremail')
-admin.site.register(Usertbl,userAdmin)
-# admin.site.register(Usertbl,userAdmin)
+    list_display = ('display_info', 'usertype', 'username', 'useremail', 'is_staff')
+
+    def display_info(self, obj):
+        return f'{obj.id} - {obj.username}'
+
+admin.site.register(Usertbl, userAdmin)
