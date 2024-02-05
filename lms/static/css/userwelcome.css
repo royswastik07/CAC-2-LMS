@@ -29,16 +29,16 @@
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #888;
+  background: white;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #555;
+  background: white;
 }
 
 .wrapper {
-  background: #171c24;
+  background: white;
   position: fixed;
   width: 100%;
   z-index: 2;
