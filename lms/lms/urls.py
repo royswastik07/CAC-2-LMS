@@ -27,6 +27,7 @@ urlpatterns = [
     path("loginerror",loginerror,name="login-error"),
     path("userwellcome",userwelcome,name="user-w"),
     path("requestorders",requestorder,name="order-req"),
+    path("payment",payment,name="payment"),
     path("requestdone",requestdone,name="order-reqdone"),
     path("trackstatus",trackstatus,name="track-sts"),
     path("showstatus",showstatus,name="show-sts"),

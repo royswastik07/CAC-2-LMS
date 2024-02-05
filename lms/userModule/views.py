@@ -131,25 +131,28 @@ def user_login(request):
 
 def loginerror(request):
     return render(request,"userM/loginerror.html")
-@login_required
+@login_required (login_url='login')
 def userwelcome(request):
     return render(request,"userM/userwellcome.html")
-@login_required
+@login_required (login_url='login')
 def requestorder(request):
     return render(request,"userM/request.html")
-@login_required
+@login_required (login_url='login')
+def payment(request):
+    return render(request,"userM/payment.html")
+@login_required (login_url='login')
 def requestdone(request):
     return render(request,"userM/requestdone.html")
-@login_required
+@login_required (login_url='login')
 def trackstatus(request):
     return render(request,"userM/trackstatus.html")
-@login_required
+@login_required (login_url='login')
 def showstatus(request):
     return render(request,"userM/showstatus.html")
-@login_required
+@login_required (login_url='login')
 def complaints(request):
     return render(request,"userM/complaint.html")
-@login_required
+@login_required (login_url='login')
 def signout(request):
     logout(request)
     return redirect('home')

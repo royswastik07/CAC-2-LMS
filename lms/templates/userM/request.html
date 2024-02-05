@@ -93,10 +93,11 @@
                                     <input type="number" min="5" max="30" placeholder="Quantity" name="Quantity" required>
                                 </div>
                                 
-                                <!-- <div class="input-field">
-                                    <label>Issued Date</label>
-                                    <input type="date" placeholder="issued date" name='Issued' required>
-                                </div> -->
+                                <div class="input-field">
+                                    <label for="amount">Amount</label>
+                                    <!-- Fix: Corrected placeholder attribute -->
+                                    <input type="number" id="amount" placeholder="Amount" name="amount" readonly>
+                                </div>
     
                                 <div class="input-field">
                                     <label>Expected Delivery Date</label>
@@ -133,3 +134,28 @@
     <!-- </div> -->
 </body>
 {% endblock content %}
+
+{% block extrafooter %}
+
+<script>
+    function calculateAmount() {
+        const quantityInput = document.getElementById('quantity');
+        const amountInput = document.getElementById('amount');
+  
+        // Get the quantity value
+        const quantityValue = parseInt(quantityInput.value, 10);
+  
+        // Check if quantityValue is a valid number
+        if (!isNaN(quantityValue)) {
+          // Calculate the amount (assuming each quantity is multiplied by 10)
+          const amountValue = quantityValue * 10;
+  
+          // Set the calculated amount to the amount input
+          amountInput.value = amountValue;
+        } else {
+          // If the quantity is not a valid number, reset the amount input
+          amountInput.value = '';
+        }
+      }
+</script>
+{% endblock extrafooter %}
