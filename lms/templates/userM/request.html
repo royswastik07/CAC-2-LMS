@@ -6,10 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <!----======== CSS ======== -->
+    <!-- CSS stylesheets -->
     <link href="{% static 'css/requeststyle.css'%}" rel="stylesheet">
-
-    <!-- Additional CSS for styling -->
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 
     <title>LMS | Laundry Request</title>
@@ -34,12 +32,11 @@
     <div class="container">
         <header>Laundry Requests</header>
 
-            <form action="submitted" method="POST">
-                {% csrf_token %}
-                <!-- {% load static %} -->
-                <div class="form first">
-                    <div class="details personal">
-                        <span class="title">Personal Details</span>
+        <form action="submitted" method="POST">
+            {% csrf_token %}
+            <div class="form first">
+                <div class="details personal">
+                    <span class="title">Personal Details</span>
 
                     <div class="fields">
                         <div class="input-field">
@@ -58,48 +55,36 @@
                                 <option option disabled selected>Choose Dept:</option>
                                 <option>BBA</option>
                                 <option>BCOM</option>
-                                <option>BALLB</option>
-                                <option>BBALLB</option>
-                                <option>BSCDS</option>
-                                <option>BSCEA</option>
-                                <option>MBA</option>
-                                <option>MSCGF</option>
-                                <option>MSCEA</option>
-                                <option>MSCDS</option>
+                                <!-- Add more options as needed -->
                             </select>
                         </div>
                     </div>
+                </div>
 
-                    <!-- <div class="details ID"> -->
-                        
-                        <div class="details ID">
-                            <span class="title">Loundry Details</span>
-    
-                            <div class="fields">
-                                <div class="input-field">
-                                    <label>Service Type</label>
-                                    <select value="Service" name="Service" id="slct1">
-                                        <option disabled selected>Choose a option</option>
-                                        <option>Dryclean</option>
-                                        <option>NormalWash</option>
-                                    </select>
-                                </div>
-                                <div class="input-field">
-                                    <label>Quantity</label>
-                                    <input type="number" min="5" max="30" placeholder="Quantity" name="Quantity" required>
-                                </div>
-                                
-                                <!-- <div class="input-field">
-                                    <label>Issued Date</label>
-                                    <input type="date" placeholder="issued date" name='Issued' required>
-                                </div> -->
-    
-                                <div class="input-field">
-                                    <label>Expected Delivery Date</label>
-                                    <input type="date" placeholder="Expected delivery date" name='Delivery' required>
-                                </div>
-                            </div>
+                <div class="details ID">
+                    <span class="title">Laundry Details</span>
+
+                    <div class="fields">
+                        <div class="input-field">
+                            <label>Service Type</label>
+                            <select value="Service" name="Service" id="slct1">
+                                <option disabled selected>Choose a option</option>
+                                <option>Dryclean</option>
+                                <option>NormalWash</option>
+                            </select>
                         </div>
+
+                        <div class="input-field">
+                            <label>Quantity</label>
+                            <input type="number" min="5" max="30" placeholder="Quantity" name="Quantity" required>
+                        </div>
+
+                        <div class="input-field">
+                            <label>Expected Delivery Date</label>
+                            <input type="date" placeholder="Expected delivery date" name='Delivery' required>
+                        </div>
+                    </div>
+                </div>
 
                 <button type="submit" class="submit">
                     <span class="btnText">Submit</span>
@@ -114,17 +99,11 @@
             <div class="bubble"></div>
             <div class="bubble"></div>
             <div class="bubble"></div>
-            <div class="bubble"></div>
+            <!-- Add more bubbles as needed -->
+        </div>
+    </section>
 
-            <div class="bubble"></div>
-            <div class="bubble"></div>
-            <div class="bubble"></div>
-            <div class="bubble"></div>
-            <div class="bubble"></div>
-            <div class="bubble"></div>
-            </div>
-        </section>
-        <!-- <script src="../static/Javascript/script.js"></script> -->
-    <!-- </div> -->
+    <!-- Additional scripts or stylesheets can be included here -->
+
 </body>
 {% endblock content %}
