@@ -3,7 +3,9 @@ from django.contrib.auth import authenticate, login,logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib import messages
-from .models import Usertbl
+from .models import Usertbl, Orderstbl
+from django.http import HttpResponse
+
 import uuid
 
 # Create your views here.
@@ -134,8 +136,41 @@ def loginerror(request):
 @login_required (login_url='login')
 def userwelcome(request):
     return render(request,"userM/userwellcome.html")
-@login_required (login_url='login')
+
+
+@login_required(login_url='login')
 def requestorder(request):
+    if request.method == 'POST':
+        # Extract form data from the request
+        name = request.POST.get('Name')
+        reg_no = request.POST.get('RegNo')
+        department = request.POST.get('Department')
+        service_type = request.POST.get('Service')
+        quantity = request.POST.get('Quantity')
+        amount = request.POST.get('Amount')
+        expected_delivery_date = request.POST.get('Delivery')
+
+        # Perform basic form validation (you can add more checks)
+        if not name or not reg_no or not department or not service_type or not quantity or not amount or not expected_delivery_date:
+            return HttpResponse("All fields are required.")
+
+        # Convert lazy-loaded user to Usertbl instance
+        user_instance = User.objects.get(username=request.user.username).usertbl
+
+        # Create an Orderstbl instance and save it to the database
+        order = Orderstbl(
+            user=user_instance,
+            service_type=service_type,
+            quantity=quantity,
+            amount=amount,
+            expected_delivery_date=expected_delivery_date
+        )
+        order.save()
+
+        # Redirect to a success page or home page
+        return redirect('home')  # Replace 'home' with the actual URL name of your home page
+
+    
     return render(request,"userM/request.html")
 @login_required (login_url='login')
 def payment(request):
