@@ -3,7 +3,7 @@ from django.contrib.auth import authenticate, login,logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib import messages
-# from .models import Usertbl
+from .models import Usertbl
 import uuid
 
 # Create your views here.
@@ -22,10 +22,22 @@ def signup(request):
             
         if not User.objects.filter(username=username).exists():
             if pass1==pass2:
+                
+                
                 myuser = User.objects.create_user(username, email, pass1)
                 if usertype == "staff":
                     myuser.is_staff=True
                 myuser.save()
+                
+                user_tbl = Usertbl(
+                    user = myuser,
+                    usertype = usertype,
+                    username = username,
+                    useremail = email,
+                    
+                    
+                )
+                user_tbl.save()
                 return render(request,"userM/signup-login.html",{'success_message': "User got Created"})
             else:
                 return render(request,"userM/signup-login.html",{'password_error_message': "Check your conformation password"})
