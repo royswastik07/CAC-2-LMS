@@ -229,13 +229,13 @@ def trackstatus(request):
 
     return render(request, 'userM/trackstatus.html')
 @login_required (login_url='login')
-def showstatus(request,order_id):
+def showstatus(request):
     return render(request,"userM/showstatus.html")
 @login_required(login_url='login')
 def complaints(request):
     if request.method == 'POST':
         # Assuming the user is logged in, retrieve the user instance from the request
-        user_instance = request.user.usertbl  # Use request.user directly
+        user_instance = Usertbl.objects.get(user=request.user)
 
         user_name = request.POST.get('user_name')
         complaint_text = request.POST.get('complaint_text')
@@ -244,8 +244,8 @@ def complaints(request):
         if not user_instance or not user_name or not complaint_text:
             return render(request, 'userM/complaint.html', {'error_message': 'All fields are required.'})
 
-        # Create a Complaint instance associated with the user
-        complaint = Complaint.objects.create( user_name=user_name, complaint_text=complaint_text)
+        # Create a Complaint instance without the 'user' field
+        complaint = Complaint.objects.create(user_name=user_name, complaint_text=complaint_text)
 
         # Optionally, you can add a success message or just return to the complaint page.
         return render(request, 'userM/complaint.html', {'success_message': 'Complaint submitted successfully.'})

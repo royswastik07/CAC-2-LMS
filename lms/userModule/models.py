@@ -55,6 +55,6 @@ class Payment(models.Model):
 class Complaint(models.Model):
     user_name = models.CharField(max_length=50, blank=False)
     complaint_text = models.TextField(max_length=50, blank=False)
-    
+
     def __str__(self):
         return f"Complaint by {self.user_name} for user {self.user.username}"

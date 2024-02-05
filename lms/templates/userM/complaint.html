@@ -1,75 +1,89 @@
-{% extends "base.html" %}
-{% load static %}
+{% extends "base.html" %} {% load static %} {% block extrahead %}
+<title>LMS | Complaint</title>
+<link rel="stylesheet" href="{% static 'css/complaint.css' %}" />
+<style>
+  /* Add custom styles for centering content */
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+  }
 
-{% block extrahead %}
-  <title>LMS | Complaint</title>
-  <link rel="stylesheet" href="{% static 'css/complaint.css' %}">
-{% endblock extrahead%}
+  .complaint-section {
+    text-align: center;
+  }
 
-{% block content %}
+  /* Add any additional styles as needed */
+</style>
+{% endblock extrahead%} {% block content %}
 
-    <div class="wrapper">
-      <nav>
-        <div class="content">
-          <div class="logo"><a href="#">{{ user.username }}</a></div>
-          <ul class="links">
-            <li><a href="{% url 'user-w' %}">Home</a></li>
-            <li><a href="{% url 'order-req' %}">Laundry Request</a></li>
-            <li><a href="{% url 'track-sts' %}">Track Status</a></li>
-            <li><a href="{% url 'complaints' %}">Raise Complaints</a></li>
-          </ul>
-        </div>
-        <!-- <div class="rightlink">
-          <form method="POST" action="/signout" class="log-out">
-          {% csrf_token %}
-            <button type="submit" id="signout" name="signout">
-            <p>Log Out</p></button>
-          </form>
-        </div> -->
-      </nav>
+<div class="wrapper">
+  <nav>
+    <div class="content">
+      <div class="logo"><a href="#">{{ user.username }}</a></div>
+      <ul class="links">
+        <li><a href="{% url 'user-w' %}">Home</a></li>
+        <li><a href="{% url 'order-req' %}">Laundry Request</a></li>
+        <li><a href="{% url 'track-sts' %}">Track Status</a></li>
+        <li><a href="{% url 'complaints' %}">Raise Complaints</a></li>
+      </ul>
     </div>
+  </nav>
+</div>
 
-    <section>
-      <h2>Submit a Complaint</h2>
-      
-      <form id="complaintForm" action="{% url 'complaints' %}" method="post">
-        {% csrf_token %}
-        <label for="userInput">User Name:</label>
-        <input type="text" id="userInput" name="user_name" placeholder="Enter your name" maxlength="50" required>
-    
-        <label for="complaintInput">Complaint (up to 50 characters):</label>
-        <textarea id="complaintInput" name="complaint_text" placeholder="Enter your complaint" maxlength="50" required></textarea>
-    
-        <button type="submit">Submit Complaint</button>
-    
-        <!-- Pop-up container for success and error messages -->
-        <div id="popupContainer" class="popup-container">
-            <div id="popupMessage" class="popup"></div>
-        </div>
-      </form>
-    </section>
-      <!-- bubbles back ground -->
-  <section class="sticky">
-    <div class="bubbles">
-      <div class="bubble"></div>
-      <div class="bubble"></div>
-      <div class="bubble"></div>
-      <div class="bubble"></div>
-      <div class="bubble"></div>
-      <div class="bubble"></div>
-      <div class="bubble"></div>
-      <div class="bubble"></div>
-      <div class="bubble"></div>
-      <div class="bubble"></div>
-      <!-- <div class="bubble"></div>
-      <div class="bubble"></div>
-      <div class="bubble"></div> -->
+<section>
+  <h2>Submit a Complaint</h2>
+
+  <form id="complaintForm" action="{% url 'complaints' %}" method="post">
+    {% csrf_token %}
+    <label for="user_name">User Name:</label>
+    <input
+      type="text"
+      id="user_name"
+      name="user_name"
+      placeholder="Enter your name"
+      maxlength="50"
+      required
+    />
+
+    <label for="complaint_text">Complaint (up to 50 characters):</label>
+    <textarea
+      id="complaint_text"
+      name="complaint_text"
+      placeholder="Enter your complaint"
+      maxlength="50"
+      required
+    ></textarea>
+
+    <button type="submit">Submit Complaint</button>
+
+    <!-- Pop-up container for success and error messages -->
+    <div id="popupContainer" class="popup-container">
+      <div id="popupMessage" class="popup"></div>
     </div>
-  </section>
-  <!-- end background -->
-{% endblock content %}
+  </form>
+</section>
+<!-- bubbles back ground -->
+<section class="sticky">
+  <div class="bubbles">
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <!-- Add more bubble elements as needed -->
+  </div>
+</section>
+<!-- End background bubbles -->
 
-{% block extrafooter %}
+{% endblock content %} {% block extrafooter %}
 
 <script src="{% static 'js/complaint.js' %}"></script>
 
