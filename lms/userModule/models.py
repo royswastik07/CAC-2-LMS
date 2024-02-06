@@ -10,14 +10,16 @@ class Usertbl(models.Model):
     USER_TYPE_CHOICES = [
         ('USER', 'user'),
         ('STAFF', 'staff'),
+        ('ADMIN', 'admin'),
     ]
-    user = models.OneToOneField(User,on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     usertype = models.CharField(max_length=10, choices=USER_TYPE_CHOICES)
-    username = models.TextField(max_length=255,blank=False)
-    useremail = models.EmailField(max_length=254,unique=True,blank=False,null=False)
-    is_staff = models.BooleanField(default=False) #New Field For Host
+    username = models.TextField(max_length=255, blank=False)
+    useremail = models.EmailField(max_length=254, unique=True, blank=False, null=False)
+    is_staff = models.BooleanField(default=False)  # New Field For Host
+    is_admin = models.BooleanField(default=False)  # New Field For Admin
 
-def __str__(self):
+    def __str__(self):
         return self.username
 
 class Orderstbl(models.Model):

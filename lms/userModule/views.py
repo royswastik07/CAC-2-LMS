@@ -8,9 +8,9 @@ from django.http import HttpResponse
 
 import uuid
 
-# Create your views here.
 def index(request):
     return render(request,"userM/home.html")
+
 def signup_login(request):
     return render(request,"userM/signup-login.html")
 
@@ -120,25 +120,28 @@ def user_login(request):
         if user is not None:
             # Log the user in
             login(request, user)
-            if not user.is_staff:
-                # messages.success(request, 'Login successful.')
+            if user.usertbl.is_admin:
+                # Redirect to admin dashboard for admin users
+                return redirect('dashboard')
+            elif not user.is_staff:
                 return redirect('user-w')  # Redirect to your home page or any desired URL after login
             elif user.is_staff:
                 return redirect('track-sts')
         else:
-            # messages.error(request, 'Invalid login credentials.')
-            return render(request,'userM/loginerror.html')  # Redirect back to the login page in case of authentication failure
+            return render(request, 'userM/loginerror.html')  # Redirect back to the login page in case of authentication failure
     else:
         return render(request, "userM/signup-login.html")
-
+    
+    
 def loginerror(request):
     return render(request,"userM/loginerror.html")
-@login_required (login_url='login')
+
+@login_required (login_url='user_login')
 def userwelcome(request):
     return render(request,"userM/userwellcome.html")
 
 
-@login_required(login_url='login')
+@login_required(login_url='user_login')
 def requestorder(request):
     if request.method == 'POST':
         # Extract form data from the request
@@ -173,7 +176,8 @@ def requestorder(request):
 
     
     return render(request,"userM/request.html")
-@login_required(login_url='login')
+
+@login_required(login_url='user_login')
 def payment(request, order_id):
     # Retrieve the order from the database
     order = get_object_or_404(Orderstbl, id=order_id)
@@ -208,10 +212,12 @@ def payment(request, order_id):
         return render(request, 'userM/requestdone.html', context)  # Use your template name
 
     return render(request, "userM/payment.html", {'order': order})
-@login_required (login_url='login')
+
+@login_required (login_url='user_login')
 def requestdone(request):
     return render(request,"userM/requestdone.html")
-@login_required (login_url='login')
+
+@login_required (login_url='user_login')
 def trackstatus(request):
     if request.method == 'POST':
         tracking_id = request.POST.get('TrackingId')
@@ -228,30 +234,45 @@ def trackstatus(request):
         return render(request, 'userM/showstatus.html', context)
 
     return render(request, 'userM/trackstatus.html')
-@login_required (login_url='login')
+
+@login_required (login_url='user_login')
 def showstatus(request):
     return render(request,"userM/showstatus.html")
-@login_required(login_url='login')
-def complaints(request):
-    if request.method == 'POST':
-        # Assuming the user is logged in, retrieve the user instance from the request
-        user_instance = Usertbl.objects.get(user=request.user)
+from .models import Complaint
 
+@login_required(login_url='user_login')
+def complaints(request):
+    complaints = Complaint.objects.all()
+
+    if request.method == 'POST':
+        user_instance = Usertbl.objects.get(user=request.user)
         user_name = request.POST.get('user_name')
         complaint_text = request.POST.get('complaint_text')
 
-        # Perform basic form validation (you can add more checks)
         if not user_instance or not user_name or not complaint_text:
-            return render(request, 'userM/complaint.html', {'error_message': 'All fields are required.'})
+            return render(request, 'userM/complaint.html', {'complaints': complaints, 'error_message': 'All fields are required.'})
 
-        # Create a Complaint instance without the 'user' field
         complaint = Complaint.objects.create(user_name=user_name, complaint_text=complaint_text)
+        return render(request, 'userM/complaint.html', {'complaints': complaints, 'success_message': 'Complaint submitted successfully.'})
 
-        # Optionally, you can add a success message or just return to the complaint page.
-        return render(request, 'userM/complaint.html', {'success_message': 'Complaint submitted successfully.'})
+    return render(request, 'userM/complaint.html', {'complaints': complaints})
 
-    return render(request, 'userM/complaint.html')
-@login_required (login_url='login')
+@login_required (login_url='user_login')
 def signout(request):
     logout(request)
     return redirect('home')
+
+@login_required (login_url='user_login')
+def dashboard(request):
+    # Fetch recent orders from the database
+    recent_orders = Orderstbl.objects.all().order_by('-id')[:5] 
+    comp = Complaint.objects.all()
+    
+    # Assuming you want to display the 5 most recent orders
+
+    context = {
+        'recent_orders': recent_orders,
+        'complaints': comp,
+    }
+
+    return render(request, "userM/dashboard.html", context)

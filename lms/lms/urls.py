@@ -32,5 +32,6 @@ urlpatterns = [
     path("trackstatus",trackstatus,name="track-sts"),
     path('showstatus/<int:order_id>/', showstatus, name='showstatus'),
     path('complaints/', complaints, name='complaints'),
-    path("signout",signout,name="logout")
+    path("signout",signout,name="logout"),
+    path("dashboard",dashboard,name="dashboard")
 ]
