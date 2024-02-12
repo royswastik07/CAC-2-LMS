@@ -1,144 +1,117 @@
-Laundry Management System (LMS)
+# Laundry Management System (Django Project)
 
-Table of Contents
+Welcome to the Laundry Management System (LMS) Django project! This project aims to streamline laundry-related tasks within an academic institution, providing users with an intuitive interface for submitting orders, tracking status, and raising complaints.
 
-		Overview
-		Features
-Installation
-Step 1: Clone the Repository
-Step 2: Create Virtual Environment
-Step 3: Activate Virtual Environment
-Step 4: Install Dependencies
-Step 5: Apply Database Migrations
-Step 6: Create Superuser (Admin)
-Step 7: Run the Development Server
-Step 8: Visit Admin Interface
-Step 9: Access Application
-Usage
-Laundry Requests
-Complaints
-Order Tracking
-		Contributing
-		License
-Overview
+## Team Members
 
-The Laundry Management System (LMS) is a robust web application developed using Django, designed to streamline laundry-related tasks within an academic institution. From submitting laundry requests to tracking orders and handling complaints, LMS provides an intuitive interface for seamless user interaction.
+- **Swastik Roy**
+- **Harish Kumar Patha**
+- **Prawajwal Singh**
 
-Features
+## Pages Overview
 
-		Laundry Requests
-Users can easily submit laundry requests by providing essential details such as personal information, service type (Dryclean or NormalWash), quantity, and the expected delivery date.
-		Complaints
-Users have the flexibility to raise complaints, providing valuable feedback on specific orders or general suggestions. This feature enhances communication and ensures user satisfaction.
-		Order Tracking
-The system enables users to track the status of their laundry orders, providing transparency and efficient order management.
-Installation
+1. **Home**: The landing page for the Laundry Management System.
+2. **Signup**: Allows new users to register and create an account.
+3. **Login**: Enables existing users to log in to their accounts.
+4. **Order Placement**: Provides a page for users to submit their laundry orders.
+5. **Track Status**: Allows users to track the status of their laundry orders.
+6. **Raise Complaints**: Provides a platform for users to submit complaints or feedback.
 
-Step 1: Clone the Repository
+## Installation
 
-bash
+To run the project locally, follow these steps:
 
+1. **Clone the repository**:
 
+   ```bash
+   git clone [https://github.com/your-username/lms.git](https://github.com/royswastik07/CAC-2-LMS.git)
+   cd lms
+   ```
 
-Copy code
+2. **Create a virtual environment**:
 
-git clone https://github.com/your-username/lms.git cd lms
+   ```bash
+   python -m venv venv
+   ```
 
-Step 2: Create Virtual Environment
+3. **Activate the virtual environment**:
 
-bash
+   - On Windows:
 
+     ```bash
+     venv\Scripts\activate
+     ```
 
+   - On macOS/Linux:
 
-Copy code
+     ```bash
+     source venv/bin/activate
+     ```
 
-python -m venv venv
+4. **Install dependencies**:
 
-Step 3: Activate Virtual Environment
+   ```bash
+   pip install -r requirements.txt
+   ```
 
-On Windows:
+5. **Apply database migrations**:
 
-bash
+   ```bash
+   python manage.py migrate
+   ```
 
+6. **Create a superuser**:
 
+   ```bash
+   python manage.py createsuperuser
+   ```
 
-Copy code
+7. **Run the development server**:
 
-venv\Scripts\activate
+   ```bash
+   python manage.py runserver
+   ```
 
-On macOS/Linux:
+8. **Visit the application** at [http://127.0.0.1:8000/](http://127.0.0.1:8000/).
 
-bash
+## Usage
 
+### Home
 
+The homepage of the Laundry Management System.
 
-Copy code
+### Signup
 
-source venv/bin/activate
+New users can register and create an account here.
 
-Step 4: Install Dependencies
+### Login
 
-bash
+Existing users can log in to their accounts.
 
+### Order Placement
 
+Users can submit their laundry orders on this page.
 
-Copy code
+### Track Status
 
-pip install -r requirements.txt
+Users can track the status of their laundry orders here.
 
-Step 5: Apply Database Migrations
+### Raise Complaints
 
-bash
+Users can submit complaints or feedback on this page.
 
-
-
-Copy code
-
-python manage.py migrate
-
-Step 6: Create Superuser (Admin)
-
-bash
-
-
-
-Copy code
-
-python manage.py createsuperuser
-
-Step 7: Run the Development Server
-
-bash
-
-
-
-Copy code
-
-python manage.py runserver
-
-Step 8: Visit Admin Interface
-
-Open a browser and go to http://127.0.0.1:8000/admin/ to log in with the superuser credentials.
-
-Step 9: Access Application
-
-Visit http://127.0.0.1:8000/ to access the Laundry Management System.
-
-Usage
-
-Laundry Requests
-
-		Navigate to the "Laundry Request" section in the user interface.
-		Fill in the required details.
-		Submit your request.
-Complaints
-
-		Visit the "Raise Complaints" section.
-		Provide order-specific or general feedback.
-Order Tracking
-
-Check the "Track Status" page to monitor the progress of your laundry orders.
-
-Contributing
+## Contributing
 
 Contributions to the project are welcome! Please follow the Contribution Guidelines for more details.
+
+## License
+
+This project is licensed under the [MIT License](LICENSE). Feel free to use and modify it according to your needs.
+
+---
+
+Thank you for exploring our Laundry Management System project! If you have any questions or suggestions, feel free to reach out to us.
+
+Happy laundering!
+
+[TEAM LMS]
