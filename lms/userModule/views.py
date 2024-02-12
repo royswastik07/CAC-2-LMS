@@ -273,6 +273,8 @@ def dashboard(request):
     context = {
         'recent_orders': recent_orders,
         'complaints': comp,
+        
+        
     }
 
     return render(request, "userM/dashboard.html", context)

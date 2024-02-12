@@ -2,7 +2,6 @@
 {% load static%}
 
 {% block content %}
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -24,7 +23,6 @@
                     <a href="#">
                         <span class="icon">
                             <ion-icon name="shield-checkmark-outline"></ion-icon>
-
                         </span>
                         <span class="title">Admin Dashboard</span>
                     </a>
@@ -39,17 +37,14 @@
                     </a>
                 </li>
 
-                
-
                 <li>
-                    <a href="#">
+                    <a href="#c">
                         <span class="icon">
                             <ion-icon name="chatbubble-outline"></ion-icon>
                         </span>
                         <span class="title">Complaints</span>
                     </a>
                 </li>
-
 
                 <li>
                     <a href="#">
@@ -71,143 +66,239 @@
             </ul>
         </div>
 
-<!-- ======================= Main ===================== -->
-<div class="main">
-    <div class="topbar">
-        <!-- <div class="toggle">
-            <ion-icon name="menu-outline"></ion-icon>
-        </div> -->
-        <marquee behavior="" direction="right">
-            <div class="content"> 
-                CHRIST LAUNDARY SYSTEM
+        <!-- ======================= Main ===================== -->
+        <div class="main">
+            <div class="topbar">
+                <marquee behavior="" direction="right">
+                    <div class="content"> 
+                        CHRIST LAUNDRY SYSTEM
+                    </div>
+                </marquee>
             </div>
-        </marquee>
-    </div>
 
-    <!-- ======================= Cards ================== -->
-    <div class="cardBox">
-        <div class="card">
-            <div>
-                <div class="numbers">{{ recent_orders|length }}</div>
-                <div class="cardName">Total Orders</div>
+            <!-- ======================= Cards ================== -->
+            <div class="cardBox" >
+                <div class="card">
+                    <div>
+                        <div class="numbers" id="totalOrders">{{ recent_orders|length }}</div>
+                        <div class="cardName">Total Orders</div>
+                    </div>
+                    <div class="iconBx">
+                        <ion-icon name="eye-outline"></ion-icon>
+                    </div>
+                </div>
+                
+
+                <div class="card">
+                    <div>
+                        <div class="numbers">{{ complaints|length }}</div>
+                        <div class="cardName">Complaints</div>
+                    </div>
+                    <div class="iconBx">
+                        <ion-icon name="chatbubbles-outline"></ion-icon>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div>
+                        <div class="numbers" id="totalEarning">{{ total_earning }}</div>
+                        <div class="cardName">Earning</div>
+                    </div>
+                    <div class="iconBx">
+                        <ion-icon name="cash-outline"></ion-icon>
+                    </div>
+                </div>
             </div>
-            <div class="iconBx">
-                <ion-icon name="eye-outline"></ion-icon>
+
+            <!-- ================ Order & Complaint Details List ================= -->
+            <div class="details">
+                <div class="recentOrders">
+                    <div class="cardHeader">
+                        <h2>Recent Orders</h2>
+                        <button id="viewAllOrders" class="btn">View Less</button>
+                    </div>
+
+                    <table id="recentOrdersTable">
+                        <thead>
+                            <tr>
+                                <th>User Id</th>
+                                <th>Service Type</th>
+                                <th>Quantity</th>
+                                <th>Amount</th>
+                                <th>Expected Delivery Date</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="recentOrdersBody">
+                            {% for order in recent_orders %}
+                                <tr class="orderRow">
+                                    <td>{{ order.user.username }}</td>
+                                    <td>{{ order.service_type }}</td>
+                                    <td>{{ order.quantity }}</td>
+                                    <td class="amount">{{ order.amount }}</td>
+                                    <td>{{ order.expected_delivery_date }}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+
+                <div id="c" class="recentComplaints">
+                    <div class="cardHeader">
+                        <h2>Recent Complaints</h2>
+                        <button id="viewAllComplaints" class="btn">View Less</button>
+                    </div>
+
+                    <table id="recentComplaintsTable">
+                        <thead>
+                            <tr>
+                                <th>User Name</th>
+                                <th>Complaint Text</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="recentComplaintsBody">
+                            {% for complaint in complaints %}
+                                <tr class="complaintRow">
+                                    <td>{{ complaint.user_name }}</td>
+                                    <td>{{ complaint.complaint_text }}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
 
-        {% comment %} <div class="card">
-            <div>
-                <div class="numbers">80</div>
-                <div class="cardName">Pending</div>
-            </div>
-            <div class="iconBx">
-                <ion-icon name="cart-outline"></ion-icon>
-            </div>
-        </div> {% endcomment %}
 
-        <div class="card">
-            <div>
-                <div class="numbers">{{ complaints|length }}</div>
-                <div class="cardName">Complaints</div>
-            </div>
-            <div class="iconBx">
-                <ion-icon name="chatbubbles-outline"></ion-icon>
-            </div>
+        <div class="container">
+            <canvas id="monthlyPaymentsChart"></canvas>
         </div>
+    
 
-        <div class="card">
-            <div>
-                <div class="numbers" id="totalEarning">{{ total_earning }}</div>
-                <div class="cardName">Earning</div>
-            </div>
-            <div class="iconBx">
-                <ion-icon name="cash-outline"></ion-icon>
-            </div>
-        </div>
-    </div>
+        <script src="assets/js/main.js"></script>
+        <script>
+            // Function to toggle between displaying only 5 items and showing all items
+            function toggleView(buttonId, tableId, rows) {
+                var button = document.getElementById(buttonId);
+                var table = document.getElementById(tableId);
+                var rowElements = table.querySelectorAll(rows);
+                var viewAll = false;
+                
+                button.addEventListener('click', function() {
+                    if (viewAll) {
+                        rowElements.forEach(function(row, index) {
+                            if (index >= 3) {
+                                row.style.display = 'none';
+                            }
+                        });
+                        button.textContent = 'View All';
+                        viewAll = false;
+                    } else {
+                        rowElements.forEach(function(row) {
+                            row.style.display = '';
+                        });
+                        button.textContent = 'View Less';
+                        viewAll = true;
+                    }
+                });
+            }
+
+            // Toggle recent orders view
+            toggleView('viewAllOrders', 'recentOrdersTable', '.orderRow');
+
+            // Toggle recent complaints view
+            toggleView('viewAllComplaints', 'recentComplaintsTable', '.complaintRow');
+
+            // Calculate total earning from recent orders
+            var totalEarning = 0;
+            var amountElements = document.querySelectorAll('.amount');
+            amountElements.forEach(function (element) {
+                totalEarning += parseFloat(element.textContent);
+            });
+
+            // Update the total earning display
+            var totalEarningElement = document.getElementById('totalEarning');
+            totalEarningElement.textContent = totalEarning.toFixed(2);
+
+            // Update the total orders dynamically
+            // Function to fetch total orders count from the server
+            // Function to fetch and update total orders count
+            function updateTotalOrdersCount() {
+                fetch('/api/total_orders_count/')
+                    .then(response => response.json())
+                    .then(data => {
+                        // Update total orders count display
+                        document.getElementById('totalOrders').textContent = data.total_orders_count;
+                    })
+                    .catch(error => console.error('Error fetching total orders count:', error));
+            }
+
+            // Fetch and update total orders count initially
+            updateTotalOrdersCount();
+
+            // Update total orders count every 5 seconds
+            setInterval(updateTotalOrdersCount, 5000);
+        </script>
+
+        <script>
+            // Function to fetch analytics data from the server
+function fetchAnalyticsData() {
+    fetch('/analytics_data/')
+        .then(response => response.json())
+        .then(data => {
+            // Update total orders count display
+            document.getElementById('totalOrders').textContent = data.recent_orders_count;
+            document.getElementById('totalComplaints').textContent = data.complaints_count;
+
+            // Call the function to update the charts
+            updateCharts();
+        })
+        .catch(error => console.error('Error fetching analytics data:', error));
+}
+
+// Call the fetchAnalyticsData function to initially fetch data and render the charts
+fetchAnalyticsData();
+
+        </script>
         
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                // Get data from Django context
+                var labels = JSON.parse('{{ labels|safe }}');
+                var data = JSON.parse('{{ data|safe }}');
+    
+                // Initialize Chart.js
+                var ctx = document.getElementById('monthlyPaymentsChart').getContext('2d');
+                var monthlyPaymentsChart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            label: 'Monthly Payments',
+                            data: data,
+                            backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                            borderColor: 'rgba(54, 162, 235, 1)',
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            yAxes: [{
+                                ticks: {
+                                    beginAtZero: true
+                                }
+                            }]
+                        }
+                    }
+                });
+            });
+        </script>
 
-    <!-- ================ Order & Complaint Details List ================= -->
-    <div class="details">
-        <div class="recentOrders">
-            <div class="cardHeader">
-                <h2>Recent Orders</h2>
-                <a href="#" class="btn">View All</a>
-            </div>
-
-            <table>
-                <thead>
-                    <tr>
-                        <th>User Id</th>
-                        <th>Service Type</th>
-                        <th>Quantity</th>
-                        <th>Amount</th>
-                        <th>Expected Delivery Date</th>
-                    </tr>
-                </thead>
-
-                <tbody>
-                    {% for order in recent_orders %}
-                        <tr>
-                            <td>{{ order.user.username }}</td>
-                            <td>{{ order.service_type }}</td>
-                            <td>{{ order.quantity }}</td>
-                            <td class="amount">{{ order.amount }}</td>
-                            <td>{{ order.expected_delivery_date }}</td>
-                        </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        </div>
-
-        <div class="recentComplaints">
-            <div class="cardHeader">
-                <h2>Recent Complaints</h2>
-                <a href="#" class="btn">View All</a>
-            </div>
-
-            <table>
-                <thead>
-                    <tr>
-                        <th>User Name</th>
-                        <th>Complaint Text</th>
-                    </tr>
-                </thead>
-
-                <tbody>
-                    {% for complaint in complaints %}
-                        <tr>
-                            <td>{{ complaint.user_name }}</td>
-                            <td>{{ complaint.complaint_text }}</td>
-                        </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        </div>
-    </div>
-</div>
-
-<script src="assets/js/main.js"></script>
-<script>
-    // Calculate total earning from recent orders
-    var totalEarning = 0;
-    var amountElements = document.querySelectorAll('.amount');
-    amountElements.forEach(function(element) {
-        totalEarning += parseFloat(element.textContent);
-    });
-
-    // Update the total earning display
-    var totalEarningElement = document.getElementById('totalEarning');
-    totalEarningElement.textContent = totalEarning.toFixed(2); // Adjust decimal places as needed
-</script>
-
-
-    <!-- ====== ionicons ======= -->
-    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-</body>
-
-
+        <!-- ====== ionicons ======= -->
+        <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+        <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    </body>
 </html>
+
 {% endblock content %}

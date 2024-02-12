@@ -227,55 +227,65 @@ body {
   object-fit: cover;
 }
 
-/* ======================= Cards ====================== */
+/* ====================== Cards ====================== */
 .cardBox {
-  position: relative;
-  width: 100%;
-  padding: 20px;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-gap: 30px;
-  
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start; /* Align items at the top */
+  flex-wrap: wrap; /* Allow cards to wrap to the next line if needed */
+  margin-top: 20px;
+
 }
 
-.cardBox .card {
-  position: relative;
+.card {
+  flex: 1 1 300px; /* Flex-grow, flex-shrink, flex-basis */
   background: linear-gradient(135deg, #2a2185, #4a41b0);
   padding: 30px;
   border-radius: 20px;
   display: flex;
   justify-content: space-between;
+  align-items: center; /* Align items vertically */
   cursor: pointer;
   box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
-  transition: background-color 0.3s ease-in-out;
+  transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out, box-shadow 0.3s ease;
+  margin: 10px; /* Add some margin between cards */
 }
 
-.cardBox .card .numbers {
+.card:hover {
+  background: linear-gradient(135deg, #4a41b0, #2a2185);
+  transform: translateY(-5px); /* Add a slight lift effect on hover */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); /* Adjust box shadow on hover */
+}
+
+.card .numbers {
   position: relative;
   font-weight: 500;
   font-size: 2.5rem;
   color: var(--accent-color);
 }
 
-.cardBox .card .cardName {
+.card .cardName {
   color: var(--secondary-text);
   font-size: 1.1rem;
   margin-top: 5px;
 }
 
-.cardBox .card .iconBx {
+.card .iconBx {
   font-size: 3.5rem;
   color: var(--secondary-text);
 }
 
-.cardBox .card:hover {
-  background: linear-gradient(135deg, #4a41b0, #2a2185);
+/* Adjust hover effects */
+.card:hover .numbers,
+.card:hover .cardName,
+.card:hover .iconBx {
+  color: var(--tertiary-bg);
 }
 
-.cardBox .card:hover .numbers,
-.cardBox .card:hover .cardName,
-.cardBox .card:hover .iconBx {
-  color: var(--tertiary-bg);
+/* Adjust hover effect for the whole card */
+.cardBox .card:hover {
+  background: linear-gradient(135deg, #4a41b0, #2a2185);
+  transform: translateY(-5px); /* Add a slight lift effect on hover */
 }
 
 /* ================== Order Details List ============== */
@@ -304,6 +314,7 @@ body {
   padding: 20px;
   box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
   border-radius: 20px;
+  margin-top: 5%;
 }
 
 
@@ -376,10 +387,15 @@ body {
 .details .recentComplaints table tr {
   color: var(--primary-text);
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+ 
+
 }
 
 .details .recentComplaints table tr:last-child {
   border-bottom: none;
+  
+  
+
 }
 
 .details .recentComplaints table tbody tr:hover {
@@ -388,7 +404,7 @@ body {
 }
 
 .details .recentComplaints table tr td {
-  padding: 10px;
+  padding: 30px;
 }
 
 .details .recentComplaints table tr td:last-child {
@@ -397,6 +413,9 @@ body {
 
 .details .recentComplaints table tr td:nth-child(2) {
   text-align: end;
+
+ 
+
 }
 
 .details .recentComplaints table tr td:nth-child(3) {

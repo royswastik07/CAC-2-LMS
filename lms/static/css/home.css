@@ -209,7 +209,7 @@ button {
 /** banner section **/
 
 .banner_main {
-     background-color: black;
+     background-color:black;
      display: flex;
      align-content: center;
      align-items: center;
@@ -360,7 +360,27 @@ button {
 
 .service_img figure img {
      width: 100%;
+     
+
 }
+
+
+#movingImg {
+     animation: moveUpDown 5s infinite alternate;
+   }
+   
+   @keyframes moveUpDown {
+     0% {
+       transform: translateY(0);
+     }
+     50% {
+       transform: translateY(-20%);
+     }
+     100% {
+       transform: translateY(0);
+     }
+   }
+   
 
 
 /** end service section **/
